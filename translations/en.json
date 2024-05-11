@@ -1,0 +1,36 @@
+{
+    "shared": {
+        "topbar": {
+            "select_host": "Select a host"
+        },
+        "files": {
+            "items": "items",
+            "empty": "Empty",
+            "size": "[size]",
+            "open_file": "Open file",
+            "loading": "Loading...",
+            "no_results": "No files or directories found"
+        },
+        "hosts": [
+            {
+                "name": "Host 2",
+                "description": "This is the second host"
+            },
+            {
+                "name": "Host 3",
+                "description": "This is the third host"
+            }
+        ]
+    },
+    "pages": {
+        "home": {
+            "meta": {
+                "title": "Home",
+                "description": "This is the home page"
+            },
+            "content": {
+                "title": "Welcome to the home page"
+            }
+        }
+    }
+}

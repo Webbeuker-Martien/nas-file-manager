@@ -1,0 +1,34 @@
+{
+    "shared": {
+        "topbar": {
+            "select_host": "Selecteer een host"
+        },
+        "files": {
+            "items": "items",
+            "empty": "Leeg",
+            "size": "[grootte]",
+            "open_file": "Open bestand"
+        },
+        "hosts": [
+            {
+                "name": "Host 2",
+                "description": "Dit is de tweede host"
+            },
+            {
+                "name": "Host 3",
+                "description": "Dit is de derde host"
+            }
+        ]
+    },
+    "pages": {
+        "home": {
+            "meta": {
+                "title": "Thuis",
+                "description": "Dit is de homepagina van de website."
+            },
+            "content": {
+                "title": "Welkom op de homepagina!"
+            }
+        }
+    }
+}
