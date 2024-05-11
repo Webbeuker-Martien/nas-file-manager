@@ -9,7 +9,12 @@
             "size": "[size]",
             "open_file": "Open file",
             "loading": "Loading...",
-            "no_results": "No files or directories found"
+            "no_results": "No files or directories found",
+            "actions": {
+                "download": "Download",
+                "share": "Share",
+                "delete": "Delete"
+            }
         },
         "hosts": [
             {

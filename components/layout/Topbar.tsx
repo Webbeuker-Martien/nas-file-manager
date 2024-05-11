@@ -87,7 +87,7 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 	}, []);
 
 	return (
-		<header ref={topbarRef} className="bg-dark-900 border-b border-dark-800 px-3 md:px-10 py-3 fixed top-0 w-full min-h-topbar flex flex-col justify-center transition-all duration-500">
+		<header ref={topbarRef} className="bg-dark-900 border-b border-dark-800 px-3 md:px-10 py-3 fixed z-50 top-0 w-full min-h-topbar flex flex-col justify-center transition-all duration-500">
 			{topbar === 'hosts' && (
 				<div className="flex justify-between items-center">
 					<h1 className="leading-5 ml-15">{t('select_host')}</h1>
@@ -96,7 +96,7 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 						src="/images/icons/options.svg"
 						width={28}
 						height={28}
-						className="w-7 h-auto fade-in"
+						className="w-7 h-auto fade-in opacity-10"
 						alt="Options"
 					/>
 				</div>
@@ -115,7 +115,7 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 							src="/images/icons/search.svg"
 							width={24}
 							height={24}
-							className="w-6 h-auto fade-in"
+							className="w-6 h-auto fade-in opacity-10"
 							alt="Search"
 						/>
 
@@ -123,7 +123,7 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 							src="/images/icons/options.svg"
 							width={28}
 							height={28}
-							className="w-7 h-auto fade-in"
+							className="w-7 h-auto fade-in opacity-10"
 							alt="Options"
 						/>
 					</div>

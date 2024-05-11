@@ -15,6 +15,8 @@ module.exports = {
 				topbar: '10dvh',
 				container: 'min(1160px, 100% - 2rem)',
 				15: '3.75rem',
+				'full-min-5': 'calc(100% - 1.25rem)',
+				'full-min-32px': 'calc(100% - 32px)',
 			},
 
 			minHeight: {

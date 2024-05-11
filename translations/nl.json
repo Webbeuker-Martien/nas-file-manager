@@ -7,7 +7,14 @@
             "items": "items",
             "empty": "Leeg",
             "size": "[grootte]",
-            "open_file": "Open bestand"
+            "open_file": "Open bestand",
+            "loading": "Laden...",
+            "no_results": "Geen bestanden of mappen gevonden",
+            "actions": {
+                "download": "Downloaden",
+                "share": "Delen",
+                "delete": "Verwijderen"
+            }
         },
         "hosts": [
             {
