@@ -1,0 +1,8 @@
+Desktop:
+- Make different UI for desktop (with checkboxes for files and dirs)
+
+Phone:
+- Long press file to select multiple
+
+Both:
+- Add other actions (view, share, copy, move, upload, etc.)
