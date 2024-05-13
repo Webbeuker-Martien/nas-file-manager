@@ -6,3 +6,4 @@ Phone:
 
 Both:
 - Add other actions (view, share, copy, move, upload, etc.)
+- Miss lazy load components (file component)

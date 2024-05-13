@@ -25,32 +25,46 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 	let prevScrollpos = 0;
 
 	const handleScroll = () => {
-        window.onscroll = function() {
-            const currentScrollPos = window.pageYOffset;
-            
-            if (currentScrollPos <= 5) {
-				if (topbarRef.current !== null) {
-					topbarRef.current.classList.add("top-0");
-					// topbarRef.current.classList.remove("-top-topbar");
-				}
-            }
-            else {
-                if (prevScrollpos > currentScrollPos) {
+		let timeout: any;
+		let isScrolling = false;
+	
+		window.addEventListener("scroll", function() {
+			const currentScrollPos = window.pageYOffset;
+	
+			if (!isScrolling) {
+				clearTimeout(timeout);
+				timeout = setTimeout(() => {
 					if (topbarRef.current !== null) {
 						topbarRef.current.classList.add("top-0");
-						// topbarRef.current.classList.remove("-top-topbar");
 					}
-                } else {
+				}, 2000);
+			}
+	
+			if (Math.abs(prevScrollpos - currentScrollPos) > 5) {
+				if (prevScrollpos > currentScrollPos) {
+					clearTimeout(timeout);
 					if (topbarRef.current !== null) {
-						topbarRef.current.classList.remove("top-0");
-						// topbarRef.current.classList.add("-top-topbar");
+						topbarRef.current.classList.add("top-0");
 					}
-                }
-            }
 
-            prevScrollpos = currentScrollPos;
-        }
-	}
+					prevScrollpos = currentScrollPos;
+
+					return;
+				}
+
+				isScrolling = true;
+				clearTimeout(timeout);
+				if (topbarRef.current !== null) {
+					topbarRef.current.classList.remove("top-0");
+				}
+				setTimeout(() => {
+					isScrolling = false;
+				}, 100);
+			}
+	
+			prevScrollpos = currentScrollPos;
+		});
+	};
 
 	useEffect(() => {
 		if (topbarRef.current !== null) {
@@ -74,7 +88,6 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 
 		const main = document.querySelector("main");
 		
-		// give main paddingtop of topbarRef height
 		if (main !== null && topbarRef.current !== null) {
 			main.style.paddingTop = `${topbarRef.current.clientHeight + 16}px`;
 		} else {
