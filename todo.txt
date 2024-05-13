@@ -5,5 +5,7 @@ Phone:
 - Long press file to select multiple
 
 Both:
-- Add other actions (view, share, copy, move, upload, etc.)
-- Miss lazy load components (file component)
+- Ability to view files:
+    - already done: image, video
+- Add other actions (share, copy, move, upload, etc.)
+- Miss lazy load components (file component, is render-blocking)
