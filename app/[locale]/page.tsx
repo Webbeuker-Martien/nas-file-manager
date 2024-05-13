@@ -10,7 +10,7 @@ import { route } from "@/lib/navigation";
 export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
 	const t = await getTranslations({ locale: params.locale, namespace: "pages.home" });
 	
-	const title = `${DefaultMetaPrefix}${t('meta.title')}`;
+	const title = `${t('meta.title')}${DefaultMetaPrefix}`;
     const description = t('meta.description');
 
 	return {

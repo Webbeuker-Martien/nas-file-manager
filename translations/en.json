@@ -30,8 +30,8 @@
     "pages": {
         "home": {
             "meta": {
-                "title": "Home",
-                "description": "This is the home page"
+                "title": "All hosts",
+                "description": "Select a host to view its files and directories"
             },
             "content": {
                 "title": "Welcome to the home page"

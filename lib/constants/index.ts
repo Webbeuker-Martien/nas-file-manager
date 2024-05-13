@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Locales } from "@/lib/navigation";
 
-export const DefaultMetaPrefix = `${process.env.NEXT_APP_TITLE_PREFIX}${process.env.NEXT_APP_NAME} | `;
+export const DefaultMetaPrefix = ` | ${process.env.NEXT_APP_TITLE_PREFIX}${process.env.NEXT_APP_NAME}`;
 export const DefaultMetaOgImages = [
     '/images/og-image.jpg',
     '/images/og-image-square.jpg',

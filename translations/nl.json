@@ -30,8 +30,8 @@
     "pages": {
         "home": {
             "meta": {
-                "title": "Thuis",
-                "description": "Dit is de homepagina van de website."
+                "title": "Alle hosts",
+                "description": "Selecteer een host om de bestanden en mappen te bekijken"
             },
             "content": {
                 "title": "Welkom op de homepagina!"

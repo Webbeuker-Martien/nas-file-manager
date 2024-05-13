@@ -5,7 +5,7 @@ import { Params, DefaultPageProps } from "@/lib/types/shared/page.types";
 import { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import RootLayout from "@/app/[locale]/defaultLayout";
-import { getGlobalConstants } from "@/lib/constants";
+import { DefaultMetaPrefix, getGlobalConstants } from "@/lib/constants";
 import Container from "@/components/shared/Container";
 import Files from "@/components/shared/Files";
 
@@ -16,14 +16,17 @@ interface MetaProps extends DefaultPageProps {
 }
 
 export async function generateMetadata({ params }: MetaProps): Promise<Metadata> {
-	const t = await getTranslations({ locale: params.locale });
+	params.host = params.host.replace(/%20/g, " ");
+	params.path = params.path.map((p) => p.replace(/%20/g, " "));
+
+	const title = `${params.path.pop()}${DefaultMetaPrefix}`;
 	
 	return {
-		title: "",
-		description: "",
+		title: title,
+		description: params.host + ' - ' + params.path.join(' / '),
 		openGraph: {
-			title: "",
-			description: "",
+			title: title,
+			description: params.host + ' - ' + params.path.join(' / '),
 		},
 	}
 }

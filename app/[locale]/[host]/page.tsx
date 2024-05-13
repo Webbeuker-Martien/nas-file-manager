@@ -15,19 +15,17 @@ interface Props extends DefaultPageProps {
     params: ExtendedParams;
 }
 
-export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
-	const t = await getTranslations({ locale: params.locale, namespace: "pages.home" });
-	
-	const title = `${DefaultMetaPrefix}${t('meta.title')}`;
-    const description = t('meta.description');
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+	const title = `${params.host}${DefaultMetaPrefix}`;
+
+	params.host = params.host.replace(/%20/g, " ");
 
 	return {
 		title: title,
-		description: description,
+		description: params.host,
 		openGraph: {
 			title: title,
-			description: description,
-			images: DefaultMetaOgImages,
+			description: params.host
 		},
 	}
 }
