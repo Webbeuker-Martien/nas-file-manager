@@ -128,7 +128,7 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 							src="/images/icons/search.svg"
 							width={24}
 							height={24}
-							className="w-6 h-auto fade-in opacity-10"
+							className="w-6 h-6 m-auto fade-in opacity-10"
 							alt="Search"
 						/>
 
@@ -136,7 +136,7 @@ export default function Topbar({ topbar = '', data, params }: TopbarProps) {
 							src="/images/icons/options.svg"
 							width={28}
 							height={28}
-							className="w-7 h-auto fade-in opacity-10"
+							className="w-7 h-7 m-auto fade-in opacity-10"
 							alt="Options"
 						/>
 					</div>

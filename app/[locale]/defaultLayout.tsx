@@ -36,7 +36,7 @@ export default function RootLayout({ topbar = '', topbarData, children, params }
 	// const nonce = headers().get('x-nonce');
 
 	return (
-		<html lang={params.locale ?? defaultLocale}>
+		<html lang={params.locale ?? defaultLocale} className='max-h-dvh'>
 			<body id="root" className={`${cx(blinker.className)} ${theme}`}>
 				<NextIntlClientProvider locale={params.locale ?? defaultLocale} messages={messages}>
 					<>

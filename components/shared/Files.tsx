@@ -1,8 +1,10 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from 'react';
-import Each from '../helpers/Each';
+import Each from '@/components/helpers/Each';
+import ViewFilePopup from '@/components/shared/ViewFilePopup';
 import { DefaultPageProps } from '@/lib/types/shared/page.types';
+import { File } from '@/lib/types/shared/item.types';
 
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
@@ -20,6 +22,10 @@ export default function Files({ host, path, params }: Props) {
     const [alreadyAnimated, setAlreadyAnimated] = useState<boolean>(false);
     const [files, setFiles] = useState<any>(null);
     const [openAction, setOpenAction] = useState<number>(-1);
+
+    const [openedFile, setOpenedFile] = useState<File | null>(null);
+    const [openedFileType, setOpenedFileType] = useState<string | null>(null);
+    const [openedFileIndex, setOpenedFileIndex] = useState<number | null>(null);
 
     const itemsRef = useRef<HTMLHeadingElement[] | null[]>([]);
 
@@ -58,7 +64,21 @@ export default function Files({ host, path, params }: Props) {
         setOpenAction(-1);
     };
 
+    const handleClickForActions = (e: any) => {
+        if (e.target!.getAttribute('data-id') === 'actions') {
+            return;
+        }
+
+        setOpenAction(-1);
+    };
+
     useEffect(() => {
+        fetch(host.host + path + '?deepest=false').then((response) => response.json()).then((response) => {
+            if (response.success === true) {
+                setFiles(response.body);
+            }
+        });
+
         document.addEventListener('scroll', handleOpenAction);
 
         return () => {
@@ -66,14 +86,6 @@ export default function Files({ host, path, params }: Props) {
         };
     }, []);
     
-    useEffect(() => {
-        fetch(host.host + path + '?deepest=false').then((response) => response.json()).then((response) => {
-            if (response.success === true) {
-                setFiles(response.body);
-            }
-        });
-    }, []);
-
     useEffect(() => {
         if (files === null) return;
         if (alreadyAnimated) return;
@@ -104,6 +116,14 @@ export default function Files({ host, path, params }: Props) {
         setAlreadyAnimated(true);
     }, [files]);
 
+    useEffect(() => {
+        document.body.addEventListener('click', handleClickForActions);
+
+        return () => {
+            document.body.removeEventListener('click', handleClickForActions);
+        };
+    }, [openAction]);
+
     const openActions = (index: number) => {
         if (openAction === index) {
             setOpenAction(-1);
@@ -113,8 +133,49 @@ export default function Files({ host, path, params }: Props) {
         setOpenAction(index);
     };
 
+    const openFile = (file: File) => {
+        const fileExt = file.ext.replace('.', '');
+        let fileType = null;
+
+        if (fileExt === 'png' || fileExt === 'jpg' || fileExt === 'jpeg' || fileExt === 'webp') {
+            fileType = 'image';
+        } else if (fileExt === 'mp4' || fileExt === 'webm' || fileExt === 'mkv') {
+            fileType = 'video';
+        } else if (fileExt === 'mp3' || fileExt === 'wav' || fileExt === 'flac') {
+            fileType = 'audio';
+        } else if (fileExt === 'pdf') {
+            fileType = 'pdf';
+        } else if (fileExt === 'txt') {
+            fileType = 'text';
+        } else if (fileExt === 'zip' || fileExt === 'rar' || fileExt === '7z') {
+            fileType = 'archive';
+        } else if (fileExt === 'doc' || fileExt === 'docx' || fileExt === 'odt') {
+            fileType = 'document';
+        } else if (fileExt === 'xls' || fileExt === 'xlsx' || fileExt === 'ods') {
+            fileType = 'spreadsheet';
+        } else if (fileExt === 'ppt' || fileExt === 'pptx' || fileExt === 'odp') {
+            fileType = 'presentation';
+        }
+
+        if (fileType === null) {
+            window.open(file.downloadPath);
+            return;
+        }
+
+        setOpenedFile(file);
+        setOpenedFileType(fileType);
+        setOpenedFileIndex(files.indexOf(file));
+    };
+
+    const resetVariables = () => {
+        setOpenedFile(null);
+        setOpenedFileType(null);
+    };
+
     return (
         <div>
+            <ViewFilePopup files={files} file={openedFile} type={openedFileType} index={openedFileIndex} resetVariables={resetVariables} />
+
             {files !== null && files.length > 0 ? (
                 <div className="flex flex-col gap-3">
                     <Each of={files} render={(file, index) => (
@@ -135,7 +196,7 @@ export default function Files({ host, path, params }: Props) {
                             </a>
                         ) : (
                             <div className="bg-dark-900 border border-dark-800 rounded-lg p-3 flex gap-2 justify-between items-center">
-                                <div onClick={(e) => alert(t('open_file'))} className="flex gap-2 items-center w-full-min-5 cursor-pointer">
+                                <div onClick={(e) => openFile(file)} className="flex gap-2 items-center w-full-min-9 cursor-pointer">
                                     <Image
                                         src={`/images/icons/extensions/${file.ext.replace('.', '')}.svg`}
                                         onError={(e) => {
@@ -165,7 +226,7 @@ export default function Files({ host, path, params }: Props) {
                                         }}
                                     />
 
-                                    <div className={`absolute z-10 bg-dark-800 rounded-lg p-3 mt-2 top-full right-0 ${openAction == index ? '' : 'hidden'}`}>
+                                    <div data-id="actions" className={`absolute min-w-32 z-10 bg-dark-800 rounded-lg p-3 mt-2 top-full right-0 ${openAction == index ? '' : 'hidden'}`}>
                                         <Each of={actions} render={(action, actionIndex) => (
                                             <div key={actionIndex} onClick={() => action.func(index)} className={`first:mt-0 last:mb-0 my-2 flex gap-2 items-center cursor-pointer ${action.text === 'Share' ? ' opacity-10' : ''}`}>
                                                 <Image

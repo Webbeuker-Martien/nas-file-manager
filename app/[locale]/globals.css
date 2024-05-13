@@ -42,6 +42,20 @@
         }
     }
 
+    .fade-out {
+        animation: fadeOut .2s ease-in-out forwards;
+    }
+
+    @keyframes fadeOut {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+            display: none;
+        }
+    }
+
     .dark {
         @apply bg-dark-950;
     }

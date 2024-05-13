@@ -10,6 +10,7 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "next start",
     "lint": "next lint",
+    "build_and_start": "npm run build && npm run start -- -p 3000 -H 0.0.0.0",
     "bas": "npm run build && npm run start -- -p 3000 -H 0.0.0.0"
   },
   "dependencies": {
