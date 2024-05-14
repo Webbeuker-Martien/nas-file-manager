@@ -20,6 +20,7 @@ const nextConfig = {
 
         
         NEXT_API_HOST: process.env.NEXT_API_HOST,
+        NEXT_APP_PASSWD: process.env.NEXT_APP_PASSWD
     }
 };
 module.exports = withNextIntl(nextConfig);
