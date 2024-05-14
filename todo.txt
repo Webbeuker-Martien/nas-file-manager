@@ -9,3 +9,4 @@ Both:
     - already done: image, video
 - Add other actions (share, copy, move, upload, etc.)
 - Miss lazy load components (file component, is render-blocking)
+- Audio player (maybe as a separate host, or seperate options under hosts) with albums (json file with file names) etc. 
