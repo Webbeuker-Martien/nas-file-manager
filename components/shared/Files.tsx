@@ -155,6 +155,8 @@ export default function Files({ host, path, params }: Props) {
             fileType = 'spreadsheet';
         } else if (fileExt === 'ppt' || fileExt === 'pptx' || fileExt === 'odp') {
             fileType = 'presentation';
+        } else if (fileExt === 'json') {
+            fileType = 'json';
         }
 
         if (fileType === null) {
@@ -186,6 +188,7 @@ export default function Files({ host, path, params }: Props) {
                                     alt="Folder"
                                     width={32}
                                     height={32}
+                                    className='w-8 h-8'
                                 />
 
                                 <div className='overflow-x-hidden'>

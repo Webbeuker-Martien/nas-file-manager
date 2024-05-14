@@ -106,7 +106,7 @@ export default function ViewFilePopup({ files, file, type, index, resetVariables
                         // do things with index when arrow is clicked
                         // ==========================================
                     }}
-                    className={`m-3 absolute top-1/2 -translate-y-1/2 left-0 z-20 cursor-pointer ${controlsHidden ? 'fade-out' : ''}`}
+                    className={`ml-1 md:ml-3 absolute top-1/2 -translate-y-1/2 left-0 z-20 cursor-pointer ${controlsHidden ? 'fade-out' : ''}`}
                 />
 
                 <Image
@@ -120,7 +120,7 @@ export default function ViewFilePopup({ files, file, type, index, resetVariables
                         // do things with index when arrow is clicked
                         // ==========================================
                     }}
-                    className={`m-3 absolute top-1/2 -translate-y-1/2 right-0 z-20 cursor-pointer ${controlsHidden ? 'fade-out' : ''}`}
+                    className={`mr-1 md:mr-3 absolute top-1/2 -translate-y-1/2 right-0 z-20 cursor-pointer ${controlsHidden ? 'fade-out' : ''}`}
                 />
 
                 {type === 'image' && file && (
@@ -131,6 +131,16 @@ export default function ViewFilePopup({ files, file, type, index, resetVariables
                     <video id='video' className='max-w-full max-h-dvh m-auto' controls autoPlay onEnded={handleReplay}>
                         <source src={file.assetPaths[0]} type={file.mime} />
                     </video>
+                )}
+
+                {type === 'audio' && file && (
+                    <audio id='audio' className='max-w-full m-auto' controls autoPlay onEnded={handleReplay}>
+                        <source src={file.assetPaths[0]} type={file.mime} />
+                    </audio>   
+                )}
+
+                {(type === 'text' || type === 'json') && file && (
+                    <iframe src={file.assetPaths[0]} className='w-full h-full py-20 px-12' />
                 )}
             </div>
         </div>

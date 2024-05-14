@@ -50,7 +50,7 @@ export default async function PathPage({ params }: Props) {
 	return (
         <RootLayout topbar={['host', 'breadcrumb']} topbarData={{
             host: host,
-            path: params.path.map((p) => decodeURI(p).replaceAll("%23", "#")),
+            path: params.path.map((p) => decodeURI(p).replaceAll("%23", "#").replaceAll("%24", "$").replaceAll("%26", "&").replaceAll("%40", "@")),
         }} params={params}>
 			<section>
 				<Container padding={false}>
