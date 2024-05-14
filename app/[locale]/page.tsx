@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { DefaultPageProps } from "@/lib/types/shared/page.types";
 import { DefaultMetaOgImages, DefaultMetaPrefix, getGlobalConstants } from "@/lib/constants";
 import Container from "@/components/shared/Container";
+import Passwd from "@/components/shared/Passwd";
 import RootLayout from "./defaultLayout";
 import Each from "@/components/helpers/Each";
 
@@ -30,19 +31,21 @@ export default async function Home({ params }: DefaultPageProps) {
 
 	return (
 		<RootLayout topbar="hosts" params={params}>
-			<section>
-				<Container padding={false}>
-					<div className="flex flex-col gap-3">
-						<Each of={hosts} render={(host, index) => (
-							// <a href={route('/', params.locale)} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
-							<a href={`/${params.locale}/${host.name}`} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
-								<h1>{host.name}</h1>
-								<p className="text-dark-50">{host.description}</p>
-							</a>
-						)} />
-					</div>
-				</Container>
-			</section>
+			<Passwd>
+				<section>
+					<Container padding={false}>
+						<div className="flex flex-col gap-3">
+							<Each of={hosts} render={(host, index) => (
+								// <a href={route('/', params.locale)} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
+								<a href={`/${params.locale}/${host.name}`} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
+									<h1>{host.name}</h1>
+									<p className="text-dark-50">{host.description}</p>
+								</a>
+							)} />
+						</div>
+					</Container>
+				</section>
+			</Passwd>
 		</RootLayout>
 	);
 }

@@ -19,7 +19,9 @@ module.exports = {
 				'full-min-9': 'calc(100% - 2.25rem)',
 				'full-min-32px': 'calc(100% - 32px)',
 			},
-
+			maxWidth: {
+				'2/3': '66.6666666667%',
+			},
 			minHeight: {
 				content: '82.5dvh',
 			},

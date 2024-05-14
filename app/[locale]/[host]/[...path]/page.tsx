@@ -10,6 +10,7 @@ import Container from "@/components/shared/Container";
 import Files from "@/components/shared/Files";
 
 import path from "path";
+import Passwd from "@/components/shared/Passwd";
 
 interface MetaProps extends DefaultPageProps {
     params: ExtendedParams;
@@ -52,20 +53,13 @@ export default async function PathPage({ params }: Props) {
             host: host,
             path: params.path.map((p) => decodeURI(p).replaceAll("%23", "#").replaceAll("%24", "$").replaceAll("%26", "&").replaceAll("%40", "@")),
         }} params={params}>
-			<section>
-				<Container padding={false}>
-					<Files host={host} path={path.join('/dir', ...params.path)} params={params} />
-				</Container>
-			</section>
+			<Passwd>
+				<section>
+					<Container padding={false}>
+						<Files host={host} path={path.join('/dir', ...params.path)} params={params} />
+					</Container>
+				</section>
+			</Passwd>
 		</RootLayout>
     );
-	// const newsItemPage = newsItems.find((page) => page.id === params.path);
-
-	// if (!newsItemPage) {
-	// 	return <><h1>Hello world</h1></>;
-	// }
-	
-	// return (
-    //     <DynamicPageContent params={params} pageLayout={newsItemPage!.pageLayout} />
-	// );
 }

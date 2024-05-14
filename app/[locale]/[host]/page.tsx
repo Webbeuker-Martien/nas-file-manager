@@ -6,6 +6,7 @@ import Container from "@/components/shared/Container";
 import RootLayout from "../defaultLayout";
 import Files from "@/components/shared/Files";
 import { log } from "util";
+import Passwd from "@/components/shared/Passwd";
 
 interface ExtendedParams extends Params {
     host: string;
@@ -44,11 +45,13 @@ export default async function Home({ params }: Props) {
 			host: host,
 			path: [],
 		}} params={params}>
-			<section>
-				<Container padding={false}>
-					<Files host={host} path={'/dir'} params={params} />
-				</Container>
-			</section>
+			<Passwd>
+				<section>
+					<Container padding={false}>
+						<Files host={host} path={'/dir'} params={params} />
+					</Container>
+				</section>
+			</Passwd>
 		</RootLayout>
 	);
 }
