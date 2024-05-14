@@ -18,7 +18,7 @@ interface Props extends DefaultPageProps {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
 	const title = `${params.host}${DefaultMetaPrefix}`;
 
-	params.host = params.host.replace(/%20/g, " ");
+	params.host = decodeURI(params.host).replaceAll("%23", "#");
 
 	return {
 		title: title,
@@ -35,7 +35,7 @@ export default async function Home({ params }: Props) {
 
 	const { hosts } = await getGlobalConstants(params.locale);
 
-	params.host = params.host.replace(/%20/g, " ");
+	// params.host = params.host.replace(/%20/g, " ");
 
 	const host = hosts.find((host) => host.name === params.host);
 

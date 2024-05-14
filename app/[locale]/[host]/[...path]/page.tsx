@@ -40,8 +40,8 @@ interface Props extends DefaultPageProps {
 }
 
 export default async function PathPage({ params }: Props) {
-    params.host = params.host.replace(/%20/g, " ");
-    params.path = params.path.map((p) => p.replace(/%20/g, " "));
+    // params.host = decodeURI(params.host).replaceAll("%23", "#");
+    // params.path = params.path.map((p) => decodeURI(p).replaceAll("%23", "#"));
 
 	const { hosts } = await getGlobalConstants(params.locale);
 
@@ -50,7 +50,7 @@ export default async function PathPage({ params }: Props) {
 	return (
         <RootLayout topbar={['host', 'breadcrumb']} topbarData={{
             host: host,
-            path: params.path,
+            path: params.path.map((p) => decodeURI(p).replaceAll("%23", "#")),
         }} params={params}>
 			<section>
 				<Container padding={false}>

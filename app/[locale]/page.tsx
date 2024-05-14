@@ -5,7 +5,6 @@ import { DefaultMetaOgImages, DefaultMetaPrefix, getGlobalConstants } from "@/li
 import Container from "@/components/shared/Container";
 import RootLayout from "./defaultLayout";
 import Each from "@/components/helpers/Each";
-import { route } from "@/lib/navigation";
 
 export async function generateMetadata({ params }: DefaultPageProps): Promise<Metadata> {
 	const t = await getTranslations({ locale: params.locale, namespace: "pages.home" });
