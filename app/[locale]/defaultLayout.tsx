@@ -31,13 +31,14 @@ type LayoutProps = {
 type Theme = 'light' | 'dark';
 
 export default function RootLayout({ topbar = '', topbarData, children, params }: LayoutProps) {
+	const messages = useMessages();
+
 	const passwd = prompt('Type password here');
 
 	if (!passwd || passwd == '') return null;
 
 	if (passwd !== process.env.NEXT_APP_PASSWD) return null;
 	
-	const messages = useMessages();
 	const theme: Theme = 'dark';
 	// const nonce = headers().get('x-nonce');
 
