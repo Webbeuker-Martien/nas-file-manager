@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createRef, useState } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 import Container from '@/components/shared/Container';
 
 type Props = {
@@ -15,16 +15,52 @@ export default function Passwd({ children }: Props) {
 
     const validateInput = () => {
         if (input.current?.value === passwd) {
-            localStorage.setItem('passwd', passwd);
+            // localStorage.setItem('passwd', passwd);
+	    setWithExpiry("passwd", passwd, 300000);
             window.location.reload();
         } else {
-            setError('Invalid password');
+            setError('Incorrect password');
         }
     };
 
+    function setWithExpiry(key: string, value: string, ttl: number) {
+	const now = new Date();
+
+	const item = {
+	    value: value,
+	    expiry: now.getTime() + ttl,
+	}
+
+        if (localStorage) {
+	    localStorage.setItem(key, JSON.stringify(item));
+        }
+    }
+
+    function getWithExpiry(key: string) {
+	let itemStr = null;
+
+	if (localStorage) {
+	    itemStr = localStorage.getItem(key);
+	}
+
+	if (!itemStr) {
+	    return null;
+	}
+	const item = JSON.parse(itemStr);
+	const now = new Date();
+	if (now.getTime() > item.expiry) {
+	    if (localStorage) {
+	        localStorage.removeItem(key);
+	    }
+	    return null;
+	}
+	return item.value;
+    }
+
+
     return (
         <>
-            {localStorage.getItem('passwd') === passwd ? children : (
+            {getWithExpiry("passwd") === passwd ? children : (
                 <section>
                     <Container padding={false} className="flex flex-col gap-3">
                         <div className='max-w-2/3'>
