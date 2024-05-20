@@ -50,13 +50,12 @@ export default async function PathPage({ params }: Props) {
 	return (
         <RootLayout topbar={['host', 'breadcrumb']} topbarData={{
             host: host,
+			type: 'music',
             path: params.path.map((p) => decodeURI(p).replaceAll("%23", "#").replaceAll("%24", "$").replaceAll("%26", "&").replaceAll("%40", "@")),
         }} params={params}>
 			{/* <Passwd> */}
 				<section>
-					<Container padding={false}>
-						<Files host={host} path={path.join('/dir', ...params.path)} params={params} />
-					</Container>
+					Get all music files from specified path
 				</section>
 			{/* </Passwd> */}
 		</RootLayout>

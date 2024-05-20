@@ -18,8 +18,8 @@
         },
         "hosts": [
             {
-                "name": "Host 2",
-                "description": "This is the second host"
+                "name": "Music Library",
+                "description": "RPI NAS Music Library"
             },
             {
                 "name": "Host 3",

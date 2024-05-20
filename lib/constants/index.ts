@@ -21,20 +21,24 @@ export const getGlobalConstants = async (locale: Locales | string = '') => {
             id: 1,
             name: "81.206.163.214",
             host: "http://81.206.163.214:2000",
+            link: "81.206.163.214",
             image: "https://via.placeholder.com/150",
             description: "RPi NAS"
         },
         {
             id: 2,
-            name: t("hosts.0.name"),
-            host: "http://localhost:2000",
+            type: 'music',
+            name: "81.206.163.214",
+            host: "http://81.206.163.214:2000",
+            link: "music/81.206.163.214",
             image: "https://via.placeholder.com/150",
-            description: t("hosts.0.description")
+            description: "RPi NAS"
         },
         {
             id: 3,
             name: t("hosts.1.name"),
             host: "http://localhost:2000",
+            link: "localhost",
             image: "https://via.placeholder.com/150",
             description: t("hosts.1.description")
         },

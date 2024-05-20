@@ -20,7 +20,11 @@ export default function Breadcrumb({ data, params }: Props) {
         <div ref={breadcrumbRef} className="flex justify-between items-center mx-15 overflow-x-auto no-scrollbar">
             <h2 className="leading-5 text-nowrap">
                 {data.host && (
-                    <a href={`/${params.locale}/${data.host.name}`} className="text-dark-50 hover:text-white">{data.host.name}</a>
+                    data.type === 'music' ? (
+                        <a href={`/${params.locale}/music/${data.host.name}`} className="text-dark-50 hover:text-white">{data.host.name}</a>
+                    ) : (
+                        <a href={`/${params.locale}/${data.host.name}`} className="text-dark-50 hover:text-white">{data.host.name}</a>
+                    )
                 )}
 
                 {data.host && data.path.length > 0 && (
@@ -29,7 +33,11 @@ export default function Breadcrumb({ data, params }: Props) {
 
                 <Each of={data.path} render={(path: string, index: number) => (
                     <>
-                        <a href={`/${params.locale}/${data.host.name}/${data.path.slice(0, index + 1).join('/')}`} className="text-dark-50 hover:text-white">{path}</a>
+                        {data.type === 'music' ? (
+                            <a href={`/${params.locale}/music/${data.host.name}/${data.path.slice(0, index + 1).join('/')}`} className="text-dark-50 hover:text-white">{path}</a>
+                        ) : (
+                            <a href={`/${params.locale}/${data.host.name}/${data.path.slice(0, index + 1).join('/')}`} className="text-dark-50 hover:text-white">{path}</a>
+                        )}
 
                         {index !== data.path.length - 1 && (
                             <span className="text-dark-50"> / </span>

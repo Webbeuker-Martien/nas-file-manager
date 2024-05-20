@@ -18,8 +18,8 @@
         },
         "hosts": [
             {
-                "name": "Host 2",
-                "description": "Dit is de tweede host"
+                "name": "Muziek Bibliotheek",
+                "description": "RPI NAS Muziek Bibliotheek"
             },
             {
                 "name": "Host 3",

@@ -32,23 +32,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Home({ params }: Props) {
 	const t = await getTranslations({ locale: params.locale, namespace: "pages.home" });
+	const t_shared = await getTranslations({ locale: params.locale, namespace: "shared" });
 
 	const { hosts } = await getGlobalConstants(params.locale);
 
 	// params.host = params.host.replace(/%20/g, " ");
 
-	const host = hosts.find((host) => host.name === params.host);
+	// ======================================
+	// Dit moet anders
+	// ======================================
+	console.log(params);
+	
+	const host = hosts.find((host) => host.name === params.host && host.type === 'music');
+	console.log(host);
+	
 
 	return (
 		<RootLayout topbar={['host', 'breadcrumb']} topbarData={{
 			host: host,
+			type: 'music',
 			path: [],
 		}} params={params}>
 			{/* <Passwd> */}
 				<section>
-					<Container padding={false}>
-						<Files host={host} path={'/dir'} params={params} />
-					</Container>
+					Get all music files from specified host
 				</section>
 			{/* </Passwd> */}
 		</RootLayout>

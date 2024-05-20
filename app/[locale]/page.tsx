@@ -31,21 +31,20 @@ export default async function Home({ params }: DefaultPageProps) {
 
 	return (
 		<RootLayout topbar="hosts" params={params}>
-			<Passwd>
+			{/* <Passwd> */}
 				<section>
 					<Container padding={false}>
 						<div className="flex flex-col gap-3">
 							<Each of={hosts} render={(host, index) => (
-								// <a href={route('/', params.locale)} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
-								<a href={`/${params.locale}/${host.name}`} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
-									<h1>{host.name}</h1>
+								<a href={`/${params.locale}/${host.link}`} className="bg-dark-900 border border-dark-800 rounded-lg p-3">
+									<h1>{host.name}{host.type === 'music' ? ' (Music Library)' : ''}</h1>
 									<p className="text-dark-50">{host.description}</p>
 								</a>
 							)} />
 						</div>
 					</Container>
 				</section>
-			</Passwd>
+			{/* </Passwd> */}
 		</RootLayout>
 	);
 }
