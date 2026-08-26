@@ -30,7 +30,7 @@ export default function GridItem({ item, viewableItems, onNavigate }: Props) {
     }
 
     if (item.type === 'folder') {
-      onNavigate(decodeURIComponent(item.relativePath));
+      onNavigate(item.relativePath);
     } else if (isViewable(item.ext)) {
       const index = viewableItems.indexOf(item);
       openViewer(viewableItems, index);

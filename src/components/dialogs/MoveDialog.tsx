@@ -45,7 +45,7 @@ export default function MoveDialog({ onCancel, onConfirm }: Props) {
           {folders.map((folder) => (
             <button
               key={folder.relativePath}
-              onClick={() => setPath(decodeURIComponent(folder.relativePath))}
+              onClick={() => setPath(folder.relativePath)}
               className="w-full flex items-center gap-2 px-2 py-2 rounded-lg hover:bg-dark-800 transition-colors text-left"
             >
               <Folder className="w-4 h-4 opacity-75 shrink-0" />
